@@ -13,7 +13,7 @@ def nearest_point(gray_list, gray_value):
 	return gray_list[_min[1]]
 	
 
-def quantize(image_url, new_level):
+def quantize(image_url, new_level, new_url):
     try:
         img = Image.open(image_url)
     except Exception as e:
@@ -36,8 +36,12 @@ def quantize(image_url, new_level):
     dst = Image.fromarray(dst)
     if dst.mode != 'RGB':
         dst = dst.convert('RGB')
-    dst.save("newImage.png")
+    dst.save(new_url)
     return True
 
 if __name__ == "__main__":
-	print(quantize("94.png", 8))
+	print(quantize("94.png", 128, "128.png"))
+	print(quantize("94.png", 32, "32.png"))
+	print(quantize("94.png", 8, "8.png"))
+	print(quantize("94.png", 4, "4.png"))
+	print(quantize("94.png", 2, "2.png"))

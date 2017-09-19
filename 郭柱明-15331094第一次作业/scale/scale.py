@@ -2,7 +2,7 @@ from PIL import Image
 import numpy
 import math
 
-def scale(image_url, new_size):
+def scale(image_url, new_size, new_url):
     try:
         img = Image.open(image_url)
     except Exception as e:
@@ -39,8 +39,15 @@ def scale(image_url, new_size):
     dst = Image.fromarray(dst)
     if dst.mode != 'RGB':
         dst = dst.convert('RGB')
-    dst.save("newImage.png")
+    dst.save(new_url)
     return True
 
 if __name__ == "__main__":
-    print(scale("94.png", (500, 200)))
+    print(scale("94.png", (192, 128), "192_128.png"))
+    print(scale("94.png", (96, 64), "96_64.png"))
+    print(scale("94.png", (48, 32), "48_32.png"))
+    print(scale("94.png", (24, 16), "24_16.png"))
+    print(scale("94.png", (12, 8), "12_8.png"))
+    print(scale("94.png", (300, 200), "300_200.png"))
+    print(scale("94.png", (450, 300), "450_300.png"))
+    print(scale("94.png", (500, 200), "500_200.png"))
